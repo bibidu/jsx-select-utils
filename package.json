@@ -1,0 +1,27 @@
+{
+  "name": "jsxparser",
+  "version": "1.0.0",
+  "description": "对标htmlparser2",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bibidu/jsxparser.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bibidu/jsxparser/issues"
+  },
+  "homepage": "https://github.com/bibidu/jsxparser#readme",
+  "devDependencies": {},
+  "dependencies": {
+    "@babel/parser": "^7.7.4",
+    "@babel/plugin-syntax-jsx": "^7.7.4",
+    "@babel/traverse": "^7.7.4",
+    "@babel/types": "^7.7.4"
+  }
+}

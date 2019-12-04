@@ -1,0 +1,1 @@
+module.exports.selectorCheck = require('./selectorCheck')
