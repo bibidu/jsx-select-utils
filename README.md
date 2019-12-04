@@ -19,7 +19,12 @@ const code = `
   </div>
 </div>
 `
-const { ast } = require('@babel/core').transform(code)
+const ast = require('@babel/parser').parse(code, {
+  sourceType: "module",
+  plugins: [
+    "jsx"
+  ]
+})
 
 const { querySelector, getParent } = jsxUtils(ast)
 
