@@ -1,4 +1,4 @@
-# jsx-utils
+# jsx-select-utils
 The parser can receive JSX AST of babel, then return a lots of methods, 
 such as,
 - `querySelector(selector: string)`
@@ -7,7 +7,7 @@ such as,
 
 ## Usage
 ```js
-const jsxUtils = require('jsx-utils')
+const jsxSelectUtils = require('jsx-select-utils')
 
 const code = `
 <div id="p">
@@ -26,7 +26,7 @@ const ast = require('@babel/parser').parse(code, {
   ]
 })
 
-const { querySelector, getParent } = jsxUtils(ast)
+const { querySelector, getParent } = jsxSelectUtils(ast)
 
 querySelector('div')
 getParent(querySelector('div')[0])

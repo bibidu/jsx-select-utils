@@ -1,8 +1,8 @@
 {
-  "name": "jsxparser",
-  "version": "1.0.0",
-  "description": "对标htmlparser2",
-  "main": "index.js",
+  "name": "jsx-select-utils",
+  "version": "0.0.1",
+  "description": "基于babel AST语法的JSX工具方法",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
