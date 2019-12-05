@@ -8,7 +8,7 @@ module.exports = function createUtil(ast) {
   const store = saveASTNodeInfo(ast)
   return {
     querySelector: (selector) => querySelector(store, selector),
-    getParent: (nodePath) => getParent(nodePath)
+    getParent: (nodePath, selector) => getParent(nodePath, selector)
   }
 }
 

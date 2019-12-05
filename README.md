@@ -2,7 +2,7 @@
 The parser can receive JSX AST of babel, then return a lots of methods, 
 such as,
 - `querySelector(selector: string)`
-- `getParent(nodePath: /* ast节点 */Node {})`
+- `getParent(nodePath: /* ast节点 */Node {}, selector: string)`
 
 
 ## Usage
@@ -11,7 +11,7 @@ const jsxSelectUtils = require('jsx-select-utils')
 
 const code = `
 <div id="p">
-  <span>{'title'}</span>
+  <span >{'title'}</span>
   <div>
     <span>
       <span>{'title'}</span>
@@ -28,9 +28,9 @@ const ast = require('@babel/parser').parse(code, {
 
 const { querySelector, getParent } = jsxSelectUtils(ast)
 
-querySelector('div')
-getParent(querySelector('div')[0])
-getParent(querySelector('div')[1])
+querySelector('span')
+getParent(querySelector('span')[0], 'div')
+getParent(querySelector('span')[1], 'div')
 
 ```
 
@@ -38,7 +38,7 @@ Output:
 ```js
 // [Node {}, Node {}, ......] /* tagName="div"的节点的asts */
 
-// { isProgram: true, nodePath: Node {} } /* 第一个tagName="div" 的父节点的asts */
+// { findIt: true, nodePath: Node {} } /* 第一个tagName="div" 的父节点的asts */
 
-// { isProgram: false, nodePath: Node {} } /* 第二个tagName="div" 的父节点的asts */
+// { findIt: false, nodePath: Node {} } /* 第二个tagName="div" 的父节点的asts */
 ```
