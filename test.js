@@ -1,34 +1,30 @@
 const parser = require('@babel/parser')
-const createUtil = require('./src')
+const SelectCSS = require('./src')
 
-
-const code = `<div id="p">
-  <span id="span">{'title'}</span>
-  <p class="p">
-    <div>
-      <span>
-        <span className="title a">{'title'}</span>
-      </span>
-    </div>
-  </p>
+const code = `
+<div className="container">
+  <div className="title">
+    <ul className="paragraph">
+      <li>1</li>
+      <li>2</li>
+    </ul>
+  </div>
+  <div className="body">
+    <h1>body</h1>
+    <ul className="paragraph">
+      <li>3</li>
+      <li>4</li>
+    </ul>
+  </div>
 </div>`
-
-
 const ast = parser.parse(code, {
   sourceType: "module",
   plugins: [
     "jsx"
   ]
 })
-const utils = createUtil(ast)
-const spans = utils.querySelectorAll('span')
-const result = utils.getParent(spans[2], 'div')
-// const result1 = utils.getParent(spans[1], '.p')
-// const result = utils.querySelector(spans[2], '.a')
-console.log(`============`)
-console.log(result.filter(Boolean).length)
-// console.log(result1.nodePath.node.openingElement.name.name)
-// console.log(result.nodePath === result1.nodePath)
-// console.log(result.findIt)
-// console.log(result)
-// console.log(result.nodePath.type)
+const search = SelectCSS(ast)
+console.log('------- result -------')
+console.log(search.find('div .title').length) // 1
+console.log(search.find('ul li').length) // 4
+// console.log(search.find('.body h1')) // [Node {/* h1节点的AST */}]

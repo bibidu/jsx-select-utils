@@ -1,22 +1,28 @@
 # jsx-select-utils
-The parser can receive JSX AST of babel, then return a lots of methods, 
+A util can help you find dom by enter CSS selectors in JSX. it has a method,
+
 such as,
-- `querySelector(nodePath: /* ast节点 */Node {}, selector: string): Boolean`
-- `querySelectorAll(selector: string): [Node {}]`
-- `getParent(nodePath: /* ast节点 */Node {}, selector: string): [Node {}]`
+- `find(selector: string): array<Node {}>`
 
 
 ## Usage
 ```js
-const jsxSelectUtils = require('jsx-select-utils')
+const jsxSelect = require('jsx-select-utils')
 
 const code = `
-<div id="p">
-  <span >{'title'}</span>
-  <div>
-    <span>
-      <span className="title red-title">{'title'}</span>
-    </span>
+<div className="container">
+  <div className="title">
+    <ul className="paragraph">
+      <li>1</li>
+      <li>2</li>
+    </ul>
+  </div>
+  <div className="body">
+    <h1>body</h1>
+    <ul className="paragraph">
+      <li>3</li>
+      <li>4</li>
+    </ul>
   </div>
 </div>
 `
@@ -27,22 +33,32 @@ const ast = require('@babel/parser').parse(code, {
   ]
 })
 
-const { querySelector, getParent } = jsxSelectUtils(ast)
+const { find } = jsxSelect(ast)
 
-querySelectorAll('span')
-getParent(querySelectorAll('span')[0], 'div')
-getParent(querySelectorAll('span')[1], 'div')
-querySelector(querySelectorAll('span')[2], 'title')
+// case one
+find('div .title').length
+
+// case two
+find('ul li').length
+
+// case three
+find('.body h1')
 
 ```
 
 Output:
 ```js
-// [Node {}, Node {}, ......] /* tagName="div"的节点的asts */
+1 // case one
 
-// [Node {}] /* 第一个tagName="span" 的父节点的asts */
+4 // case two
 
-// [Node {}, Node {}] /* 第二个tagName="span" 的父节点的asts */
-
-// true
+[Node {/* .body下h1节点的AST */}] // case three
 ```
+## Supported selectors
+
+*add constantly according to CSS3.*
+
+- Tag (`<tagname>`)
+- ClassName (`className=""`)
+- Id (`id=""`)
+- Parent (`className=".a .b"`)

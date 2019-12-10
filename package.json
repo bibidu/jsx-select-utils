@@ -1,27 +1,27 @@
 {
   "name": "jsx-select-utils",
-  "version": "0.0.2",
-  "description": "基于babel AST语法的JSX工具方法",
-  "main": "src/index.js",
+  "version": "0.0.3",
+  "description": "",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/bibidu/jsxparser.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/bibidu/jsxparser/issues"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bibidu/jsx-select-utils.git"
   },
-  "homepage": "https://github.com/bibidu/jsxparser#readme",
-  "devDependencies": {},
+  "bugs": {
+    "url": "https://github.com/bibidu/jsx-select-utils/issues"
+  },
+  "homepage": "https://github.com/bibidu/jsx-select-utils#readme",
   "dependencies": {
-    "@babel/parser": "^7.7.4",
     "@babel/plugin-syntax-jsx": "^7.7.4",
-    "@babel/traverse": "^7.7.4",
-    "@babel/types": "^7.7.4"
+    "@babel/traverse": "^7.7.4"
+  },
+  "devDependencies": {
+    "@babel/parser": "^7.7.5"
   }
 }
