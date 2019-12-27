@@ -23,8 +23,30 @@ const ast = parser.parse(code, {
     "jsx"
   ]
 })
+
+function getAstInfo(asts) {
+  return asts.map(item => {
+    const openingElement = item.get('openingElement')
+    const attrs = openingElement.get('attributes')
+    const classItem = attrs.filter(attr => attr.get('name').isJSXIdentifier({ name: 'className' }))
+    const idItem = attrs.filter(attr => attr.get('name').isJSXIdentifier({ name: 'id' }))
+    return {
+      tag: openingElement.get('name').node.name,
+      class: classItem.length ? classItem[0].get('value').node.value : '',
+      id: idItem.length ? idItem[0].get('value').node.value : '',
+    }
+  })
+}
+
 const search = SelectCSS(ast)
 console.log('------- result -------')
-console.log(search.find('div .title').length) // 1
-console.log(search.find('ul li').length) // 4
-// console.log(search.find('.body h1')) // [Node {/* h1节点的AST */}]
+
+console.log(getAstInfo(search.find('div .title')))
+// [ { tag: 'div', class: 'title', id: '' } ]
+
+console.log(getAstInfo(search.find('div')))
+// [
+//   { tag: 'div', class: 'container', id: '' },
+//   { tag: 'div', class: 'title', id: '' },
+//   { tag: 'div', class: 'body', id: '' }
+// ]
